@@ -13,7 +13,7 @@ urlpatterns = [
 
 ## e dentro da ancora inserir a tag
 
-**`{ url }`** e nome da função **`{ url form }`**
+**`{ url }`** e o nome da função criada **`{ url form }`**
 
 ```
  <a href="{% url "form" %}" class="btn btn-primary">Login</a>
