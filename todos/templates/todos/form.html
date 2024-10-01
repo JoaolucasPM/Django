@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 
-{% block header %}Formulario{% endblock header %}
+{% block header %}Formulario
+<a href="{% url "home" %}" class="btn btn-primary">Home</a>
+
+{% endblock header %}
 
 
 {% block content %}
@@ -19,6 +22,7 @@
       <label class="form-check-label" for="exampleCheck1">Check me out</label>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
+    
   </form>
 
 {% endblock content %}

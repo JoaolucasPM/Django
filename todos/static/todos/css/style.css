@@ -1,17 +1,34 @@
-
-img{
-    width: 30px; 
+img {
+    width: 30px;
     height: 40px
 }
 
 .custom-bg {
-    background-color: #201e1e; /* Aqui você define a cor desejada */
-  }
-  
-.custom-cor{
+    background-color: #201e1e;
+    /* Aqui você define a cor desejada */
+}
+
+.custom-cor {
     color: aliceblue;
 }
 
-table{
+table {
     width: 40px;
+}
+
+
+
+.card {
+    width: 18rem;
+    margin: 30px;
+    padding: 2rem;
+}
+
+.custom-login {
+    width: 65px;
+    height: 40px;
+}
+
+main{
+    padding: 5rem;
 }
