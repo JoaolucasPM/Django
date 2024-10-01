@@ -1,80 +1,21 @@
-# Projeto django
+# Navegação entre paginas
 
-Crie um ambiente virtual
-
-
-```
-python -m venv .venv
-```
-
-Ativar o ambiente
+## 1 - Nomear uma url com o **`name`**:
 
 ```
-.\.venv\Scripts\activate
-```
-
-# Instalar o django com pip
-
-</br> 
-
-```
-pip install django
-```
-
-## Criar o App
-</br> 
-
-```
-django-admin startproject setup .
-```
-</br> 
-
-## Criar o projeto
-
-```
-python manage.py startapp todos
-```
- 
-# Add. o app dentro do setup
-### Caminho das pastas
-- todos > apps 
-- todos > apps > TodosConfig (nome da função)
-
-<br>
-
-# Próximo passo (view)
-Dentro da do projeto (todos)
-##
-- todos > criar pasta (templates) > criar uma mesma pasta com o nome do projeto (todos)
-- P(todos) > Ptemplates > P todos > file (.html)
-
-</br>
-
-## Renderizar um arquivo html
-dentro de:
-
-todos > views
-
-```
-from django.shortcuts import render
-
-def home(request):
-    return render(request, "todos/home.html")
-```
-e informar dentro das URLS do app
-
-dentro de:
-setup > url 
-```
-from todos.views import home
-
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home),
+    path('', home, name='home'),
+    path('form/', form, name='form'),
+
 ]
 ```
 
-e após: 
+## e dentro da ancora inserir a tag
+
+**`{ url }`** e o nome da função criada **`{ url form }`**
+
 ```
-python manage.py runserver
+ <a href="{% url "form" %}" class="btn btn-primary">Login</a>
+
 ```
