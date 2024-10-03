@@ -1,21 +1,36 @@
-# Criando um model
+# Criando as rotas list e form
 
-## 2 - Criar um modelo que é um objeto no banco de dados
+### Após ter criado uma model, pode-se usar html para renderizar esses dados no front end
+
+## 1 - Fazer a imortação do banco no arquivo de `views.py`
 
 ```
-class Todos(models.Model):
-    nome =   models.CharField(max_length=50)
-    cidade = models.CharField(max_length=50)
+from .models import Todo
 ```
 
-### para criar tabela no banco de dados
+Todo = o nome do objeto dentro do `models.py`
 
-**`python manage.py makemigrations`**
+## 2 - Exibir dados (GET)
 
-### Depois para aplicar a migração
+### Django já tem classes pré-contruidas ou genéricas dentro do arquivo `views.py` faremos essa importação, e usaremos o 'ListView' para fazer a listagem
 
-**`python manage.py migrate`**
+```
+from django.views.generic import ListView
+```
 
-# Acessando a area admin do django
+## Criar o objeto que receba o ListView o banco, a pagina e o nome do objeto
 
-### python manage.py createsuperuser
+```
+class ProductListView(ListView):
+    model = Todos
+    template_name = 'todos/list.html'
+    context_object_name = 'listP'
+```
+
+### E dentro do `urls.py` alterar as configuração do rota, indicando que será usada templates genéricos
+
+```
+path('list/',ProductListView.as_view(), name='list')
+```
+
+### E dentro do `list.html` usar as tags de `{ % for % }` `{% endfor %}`
