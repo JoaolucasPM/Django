@@ -1,0 +1,24 @@
+{% extends "base.html" %} 
+{% block header %}Lista de usuarios{% endblock header%} 
+{% block content %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">N°</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Cidade</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    {% for todo in listP %}
+    <tr>
+      <th scope="row">{{todo.id}}</th>
+      <td>{{todo.nome}}</td>
+      <td>{{todo.cidade}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock content %}
