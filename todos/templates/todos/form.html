@@ -6,4 +6,10 @@
 {% endblock header %}
 
 
-{% block content %}{% endblock content %}
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit" class="btn btn-primary">Salvar</button>
+</form>
+{% endblock content %}

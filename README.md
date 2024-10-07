@@ -1,36 +1,65 @@
-# Criando as rotas list e form
+# Criando rota para inserir dados (POST)
 
-### Após ter criado uma model, pode-se usar html para renderizar esses dados no front end
-
-## 1 - Fazer a imortação do banco no arquivo de `views.py`
+## Passos para configurar e usar o Crispy Forms no Django:
 
 ```
-from .models import Todo
+pip install django-crispy-forms
 ```
 
-Todo = o nome do objeto dentro do `models.py`
-
-## 2 - Exibir dados (GET)
-
-### Django já tem classes pré-contruidas ou genéricas dentro do arquivo `views.py` faremos essa importação, e usaremos o 'ListView' para fazer a listagem
+ou
 
 ```
-from django.views.generic import ListView
+pip install crispy-bootstrap5
 ```
 
-## Criar o objeto que receba o ListView o banco, a pagina e o nome do objeto
+### Adicionar Crispy Forms nas configurações do Django Agora, adicione 'crispy_forms' e o pacote de bootstrap (ou o framework que você escolher) no arquivo settings.py:
 
 ```
-class ProductListView(ListView):
+INSTALLED_APPS = [
+    # Outros apps
+    'crispy_forms',
+    'crispy_bootstrap5',  # Se você estiver usando Bootstrap 5
+]
+
+# Define o template pack que você vai usar (Bootstrap 5 neste exemplo)
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
+```
+
+E dentro do arquivo `todo_form.html`
+
+```
+<form method="POST">
+  {% csrf_token %} {{form | crispy}}
+
+  <button type="submit" class="btn btn-primary">Salvar</button>
+</form>
+{% endblock content %}
+```
+
+## Importar view gerencias dessa vez a `CreateView` dentro de **`Views.py`** e o reverse_lazy pra quando houver sucesso na pagina.
+
+```
+from django.views.generic import ListView, CreateView
+from django.urls import reverse_lazy
+
+
+class ProductCreateView(CreateView):
     model = Todos
-    template_name = 'todos/list.html'
-    context_object_name = 'listP'
-```
-
-### E dentro do `urls.py` alterar as configuração do rota, indicando que será usada templates genéricos
+    template_name = 'todos/form.html'  
+    fields = ["nome", "cidade"] #Campos que aparecerão
+    success_url = reverse_lazy("list")
 
 ```
-path('list/',ProductListView.as_view(), name='list')
-```
+## Detro do arquivo `urls.py` configurar o nome da rota 
 
-### E dentro do `list.html` usar as tags de `{ % for % }` `{% endfor %}`
+```
+from todos.views import home, ProductListView, ProductCreateView
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', home, name='home'),
+    path('form/', ProductCreateView.as_view(), name='form'),
+    path('list/',ProductListView.as_view(), name='list'),
+
+]
+```
