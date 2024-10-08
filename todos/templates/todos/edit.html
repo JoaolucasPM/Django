@@ -1,0 +1,38 @@
+{% extends "base.html" %} {% block header %}
+Editar registro
+
+
+
+
+
+{% endblock header %}
+{% block content %}
+
+
+<h1> Editar registro </h1>
+<div class="block_1 row">
+  <div class="col">
+    <form method="post">
+        
+      {% csrf_token %} {{ form.as_p }}
+      <button type="submit" class="btn btn-primary">Salvar</button>
+    </form>
+  </div>
+</div>
+
+<div class="edit">
+<form action="{% url 'delete' object.pk %}" method="post" >
+    <h3>Excluir regristro</h3>
+    {% csrf_token %} 
+    <div class="edit"> 
+    <span>Nome: {{object.nome}}</span>
+    <span> || </span>
+    <span>Cidade: {{object.cidade}}</span>
+    
+    <button type="submit" class="btn btn-danger">Excluir</button>
+    
+</form>
+</div>
+
+
+ {% endblock content %}
