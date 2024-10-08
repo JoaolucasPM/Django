@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import Todos
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, DeleteView, UpdateView
 
 def home(request):
     return render(request, "base.html")
@@ -14,15 +14,15 @@ class ProductListView(ListView):
 class ProductCreateView(CreateView):
     model = Todos
     template_name = 'todos/form.html'  
-    fields = ["nome", "cidade"] #Campos que aparecerão
+    fields = ["nome", "cidade"] 
     success_url = reverse_lazy("list")
 
+class ProductDeleteView(DeleteView):
+    model = Todos
+    success_url = reverse_lazy("list")
 
-
-
-""" def form(request):
-    return render(request, "todos/form.html")
-    sucess_url = reverse_lazy("list") """
-
-
-
+class ProductUpdateView(UpdateView):
+    model = Todos
+    fields = ["nome", "cidade"]
+    template_name = 'todos/edit.html'  
+    success_url = reverse_lazy("list")

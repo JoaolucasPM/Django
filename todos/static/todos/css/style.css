@@ -3,7 +3,7 @@ img {
     height: 40px
 }
 
-.custom-bg {
+.custom-bg, .edit {
     background-color: #201e1e;
     /* Aqui você define a cor desejada */
 }
@@ -15,7 +15,12 @@ img {
 table {
     width: 40px;
 }
-
+.edit{
+    text-align: center;
+    margin-top: 10px;
+    width: 100%;
+    border-radius: 10px;
+}
 
 
 .card {
@@ -31,4 +36,20 @@ table {
 
 main{
     padding: 5rem;
+}
+.form-container {
+    display: flex;
+    flex-direction: column; /* Organiza os formulários em uma coluna */
+    gap: 1rem; /* Espaço entre os formulários */
+}
+
+.edit{
+
+    padding: 10px;
+    color: aliceblue;
+}
+
+span{
+    color: white;
+    padding: 4px;
 }
