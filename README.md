@@ -1,80 +1,17 @@
-# Projeto django
+# Usando arquivos staticos com django
 
-Crie um ambiente virtual
+<h2>1 - Criar um diretorico chamado 'static' dentro do aplicação:</h2>
 
-
-```
-python -m venv .venv
-```
-
-Ativar o ambiente
-
-```
-.\.venv\Scripts\activate
-```
-
-# Instalar o django com pip
-
-</br> 
-
-```
-pip install django
-```
-
-## Criar o App
-</br> 
-
-```
-django-admin startproject setup .
-```
-</br> 
-
-## Criar o projeto
-
-```
-python manage.py startapp todos
-```
- 
-# Add. o app dentro do setup
 ### Caminho das pastas
-- todos > apps 
-- todos > apps > TodosConfig (nome da função)
+- todos > static
+- todos > static > todos > css
+- todos > static > todos > css > file style.css
 
-<br>
-
-# Próximo passo (view)
-Dentro da do projeto (todos)
-##
-- todos > criar pasta (templates) > criar uma mesma pasta com o nome do projeto (todos)
-- P(todos) > Ptemplates > P todos > file (.html)
-
-</br>
-
-## Renderizar um arquivo html
-dentro de:
-
-todos > views
+<h2>2 - Dentro do  settings.py  </h2>
 
 ```
-from django.shortcuts import render
-
-def home(request):
-    return render(request, "todos/home.html")
-```
-e informar dentro das URLS do app
-
-dentro de:
-setup > url 
-```
-from todos.views import home
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', home),
+ STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / "static",  
 ]
-```
-
-e após: 
-```
-python manage.py runserver
 ```
