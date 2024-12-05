@@ -1,0 +1,17 @@
+
+img{
+    width: 30px; 
+    height: 40px
+}
+
+.custom-bg {
+    background-color: #201e1e; /* Aqui você define a cor desejada */
+  }
+  
+.custom-cor{
+    color: aliceblue;
+}
+
+table{
+    width: 40px;
+}

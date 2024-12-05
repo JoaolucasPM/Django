@@ -1,80 +1,48 @@
-# Projeto django
+# Trabalhando com extends
 
-Crie um ambiente virtual
+### No Django, o sistema de templates é projetado para reutilizar partes do layout HTML, tornando o desenvolvimento mais eficiente e organizado. O uso do **`extends`** é uma das principais formas de fazer isso.
 
+<br/>
 
-```
-python -m venv .venv
-```
+## 2 - Primeiro passo:
 
-Ativar o ambiente
+### Criar o esqueleto do projeto **`base.html`**
 
-```
-.\.venv\Scripts\activate
-```
+- Cabeçalho (Uma para todos)
+- Menu (Um para cada pagina)
+- Rodapé (Um para todos)
 
-# Instalar o django com pip
+### A logica é aproveitar o reaproveitar todo o Cabeçalho e Rodapé, alterando apenas o Menu.
 
-</br> 
+<br/>
 
-```
-pip install django
-```
+## 3 - Usando as tags **`extends`**, **`block`** e **`endblock`**
 
-## Criar o App
-</br> 
+### Aonde teremos conteudos que vão mudar, adcionaremos a tag **`block`** e **`endblock`** juntos ao nome desse "bloco".
+
+No exemplo abaixo foi usado dentro do **`main`**:
 
 ```
-django-admin startproject setup .
+    <main>
+      {% block content %}
+
+      {% endblock %}
+    </main>
 ```
-</br> 
+## E onde vamos aproveitar aquilo que está dentro do **`base.html`** (header e footer) usamos usamos a tag **`extends`** junto a origem herdada.
 
-## Criar o projeto
-
+```  
+{% extends "base.html" %}
 ```
-python manage.py startapp todos
-```
- 
-# Add. o app dentro do setup
-### Caminho das pastas
-- todos > apps 
-- todos > apps > TodosConfig (nome da função)
+(Aqui já estará rendizando na tela o html base)
 
-<br>
-
-# Próximo passo (view)
-Dentro da do projeto (todos)
-##
-- todos > criar pasta (templates) > criar uma mesma pasta com o nome do projeto (todos)
-- P(todos) > Ptemplates > P todos > file (.html)
-
-</br>
-
-## Renderizar um arquivo html
-dentro de:
-
-todos > views
+### e após usaremos  `block`** e o **`endblock` junto a nome do bloco, alterando para o novo conteúdo.
 
 ```
-from django.shortcuts import render
+{% block content %}
+<form>
+<h1>Novo conteudo </h2>
 
-def home(request):
-    return render(request, "todos/home.html")
-```
-e informar dentro das URLS do app
+{% endblock content %}
 
-dentro de:
-setup > url 
-```
-from todos.views import home
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', home),
-]
-```
-
-e após: 
-```
-python manage.py runserver
 ```
